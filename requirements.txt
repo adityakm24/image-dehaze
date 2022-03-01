@@ -1,6 +1,6 @@
 numpy
 opencv-python
-skimage
+scikit-image
 Pillow
 matplotlib
 numba
