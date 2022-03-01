@@ -18,6 +18,9 @@ def open_image():
     l1 = tkinter.Label(root, image=img)
     l1.grid(column=0,row=2, padx=50)
 
+def call_haze():
+    
+
 root = tkinter.Tk()
 root.title = "Dehaze"
 
