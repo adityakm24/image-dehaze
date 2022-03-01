@@ -4,3 +4,4 @@ scikit-image
 Pillow
 matplotlib
 numba
+tk
