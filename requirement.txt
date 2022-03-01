@@ -1,6 +1,0 @@
-numpy
-opencv-python
-install scikit-image
-Pillow
-matplotlib
-numba
