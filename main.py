@@ -14,7 +14,5 @@ browse.grid(column=1, row=0)
 submit = tkinter.Button(root, text="Submit")
 submit.grid(column=0, row=1)
 
-test = tkinter.Button()
-test.pack()
 
 root.mainloop()
