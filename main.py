@@ -1,15 +1,17 @@
 import tkinter
 import os
+import subprocess
+
 
 root = tkinter.Tk()
 
-input = tkinter.Entry()
-input.pack()
+input = tkinter.Entry(root, text="Enter image path...")
+input.grid(column=0, row=0)
 
-browse = tkinter.Button()
-browse.pack()
+browse = tkinter.Button(root, text="Browse")
+browse.grid(column=1, row=0)
 
-submit = tkinter.Button()
-submit.pack()
+submit = tkinter.Button(root, text="Submit")
+submit.grid(column=0, row=1)
 
 root.mainloop()
