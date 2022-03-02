@@ -91,8 +91,11 @@ class HazeRemoval(object):
         cv2.imwrite("img/gtran.jpg", (self.gtran*255).astype(np.uint8))
         cv2.imwrite("img/dst.jpg", self.dst[:,:,(2,1,0)])
 
+        im_path = img.filename
+        im_name_ext = im_path.split("/")[-1]
+        im_name, im_ext = im_name_ext.split(".")
         
-        io.imsave("./dehazed/test.jpg", self.dst)
+        io.imsave(f"./dehazed/{im_name}_dehazed.{im_ext}", self.dst)
 
 
 
