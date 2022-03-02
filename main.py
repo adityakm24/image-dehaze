@@ -1,5 +1,6 @@
 import tkinter
 import os
+import sys
 import subprocess
 from tkinter import NW, filedialog
 
@@ -22,7 +23,18 @@ def call_haze():
 
     msg = tkinter.Label(root, text="Dehazing complete! Image stored in dehazed folder.")
     msg.grid(column=0, row=4)
-    
+
+    retry = tkinter.Button(root, text="Retry", command=restart_program)
+    retry.grid(column=0, row=5)
+
+    quit = tkinter.Button(root, text="Quit", command=quit_program)
+    quit.grid(column=1, row=5)
+
+def restart_program():
+    os.execl(sys.executable, sys.executable, *sys.argv)  
+
+def quit_program():
+    sys.exit()
 
 root = tkinter.Tk()
 root.title = "Dehaze"
