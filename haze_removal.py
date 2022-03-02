@@ -11,6 +11,8 @@ class HazeRemoval(object):
         pass
 
     def open_image(self, img_path):
+        global img
+
         img = Image.open(img_path)
         self.src = np.array(img).astype(np.double)/255.
         # self.gray = np.array(img.convert('L'))
@@ -88,20 +90,20 @@ class HazeRemoval(object):
         cv2.imwrite("img/tran.jpg", (self.tran*255).astype(np.uint8))
         cv2.imwrite("img/gtran.jpg", (self.gtran*255).astype(np.uint8))
         cv2.imwrite("img/dst.jpg", self.dst[:,:,(2,1,0)])
+
         
-        io.imsave("test.jpg", self.dst)
+        io.imsave("./dehazed/test.jpg", self.dst)
 
 
 
-if __name__ == '__main__':
-    import sys
-    hr = HazeRemoval()
-    hr.open_image(sys.argv[1])
-    hr.get_dark_channel()
-    hr.get_air_light()
-    hr.get_transmission()
-    hr.guided_filter()
-    hr.recover()
-    hr.show()
+# if __name__ == '__main__':
+#     hr = HazeRemoval()
+#     hr.open_image(sys.argv[1])
+#     hr.get_dark_channel()
+#     hr.get_air_light()
+#     hr.get_transmission()
+#     hr.guided_filter()
+#     hr.recover()
+#     hr.show()
 
     
