@@ -19,7 +19,7 @@ def open_image():
     l1.grid(column=0,row=2, padx=50)
 
 def call_haze():
-    subprocess.call(f"python haze_removal.py {img_name}")
+    subprocess.call(f"python haze_removal.py {img_name}", shell=True)
 
     msg = tkinter.Label(root, text="Dehazing complete! Image stored in dehazed folder.")
     msg.grid(column=0, row=4)
