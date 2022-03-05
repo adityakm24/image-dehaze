@@ -3,32 +3,44 @@ import os
 import sys
 import subprocess
 from tkinter import NW, filedialog
-
-import haze_removal
 from PIL import Image, ImageTk
 
 def open_image():
     global img
     global img_name
 
-    img_name = filedialog.askopenfilename(initialdir=".", title="Select Image", filetypes=(("images", "*.jpg"), ("images", "*.png"),("images", "*.jpeg")))
+    img_name = filedialog.askopenfilename(initialdir=".", title="Select Image", filetypes=(("images", "*.jpg"), ("images", "*.bmp"),("images", "*.jpeg")))
     print(img_name)
+    input.insert(0, img_name)
+
+    l1 = tkinter.Label(root, text="Original Image:")
+    l1.grid(column=0, row=2)
 
     img = ImageTk.PhotoImage(Image.open(img_name).resize((250, 250)))
-    l1 = tkinter.Label(root, image=img)
-    l1.grid(column=0,row=2, padx=50)
+    l2 = tkinter.Label(root, image=img)
+    l2.grid(column=0,row=3)
+
 
 def call_haze():
+    global dehazed
+
     subprocess.call(f"python haze_removal.py {img_name}", shell=True)
 
     msg = tkinter.Label(root, text="Dehazing complete! Image stored in dehazed folder.")
-    msg.grid(column=0, row=4)
+    msg.grid(column=0, row=5, columnspan=2)
+
+    l3 = tkinter.Label(root, text="Dehazed Image:")
+    l3.grid(column=1, row=2)
+
+    dehazed = ImageTk.PhotoImage(Image.open("img/dst.jpg").resize((250, 250)))
+    l4 = tkinter.Label(root, image=dehazed)
+    l4.grid(column=1, row=3, padx=10)
 
     retry = tkinter.Button(root, text="Retry", command=restart_program)
-    retry.grid(column=0, row=5)
+    retry.grid(column=0, row=6)
 
     quit = tkinter.Button(root, text="Quit", command=quit_program)
-    quit.grid(column=1, row=5)
+    quit.grid(column=1, row=6)
 
 def restart_program():
     os.execl(sys.executable, sys.executable, *sys.argv)  
@@ -42,14 +54,14 @@ root.title = "Dehaze"
 label = tkinter.Label(root, text="Enter image path:")
 label.grid(column=0, row=0)
 
-input = tkinter.Entry(root)
+input = tkinter.Entry(root, width=50)
 input.grid(column=0, row=1, padx=10, pady=10)
 
 browse = tkinter.Button(root, text="Browse", command=open_image)
 browse.grid(column=1, row=1)
 
 submit = tkinter.Button(root, text="Submit", command=call_haze)
-submit.grid(column=0, row=3)
+submit.grid(column=0, row=4)
 
 
 root.mainloop()
