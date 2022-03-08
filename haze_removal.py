@@ -99,15 +99,15 @@ class HazeRemoval(object):
 
 
 
-if __name__ == '__main__':
-    import sys
-    hr = HazeRemoval()
-    hr.open_image(sys.argv[1])
-    hr.get_dark_channel()
-    hr.get_air_light()
-    hr.get_transmission()
-    hr.guided_filter()
-    hr.recover()
-    hr.show()
+# if __name__ == '__main__':
+#     import sys
+#     hr = HazeRemoval()
+#     hr.open_image(sys.argv[1])
+#     hr.get_dark_channel()
+#     hr.get_air_light()
+#     hr.get_transmission()
+#     hr.guided_filter()
+#     hr.recover()
+#     hr.show()
 
     

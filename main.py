@@ -2,14 +2,15 @@ import tkinter
 import os
 import sys
 import subprocess
-from tkinter import NW, filedialog
+import haze_removal
+from tkinter import NW, filedialog, ttk
 from PIL import Image, ImageTk
 
 def open_image():
     global img
     global img_name
 
-    img_name = filedialog.askopenfilename(initialdir=".", title="Select Image", filetypes=(("images", "*.jpg"), ("images", "*.bmp"),("images", "*.jpeg")))
+    img_name = filedialog.askopenfilename(initialdir=".", title="Select Image", filetypes=(("images", "*.jpg"), ("images", "*.bmp"),("images", "*.jpeg"), ("images", "*.jfif")))
     print(img_name)
     input.insert(0, img_name)
 
@@ -23,7 +24,47 @@ def open_image():
 
 def call_haze():
     global dehazed
-    subprocess.call(f"python haze_removal.py {img_name}", shell=True)
+    global progress_bar
+    global l_percent
+    # subprocess.call(f"python haze_removal.py {img_name}", shell=True)
+
+    submit.destroy()
+    progress_bar = ttk.Progressbar(root, orient="horizontal", length="300", mode="determinate", maximum=100)
+    progress_bar.grid(column=0, row=4)
+
+    msg = "Opening image"
+
+    l_percent = tkinter.Label(root, text=update_progress_label)
+    l_percent.grid(column=1, row=4)
+
+    l_msg = tkinter.Label(root, textvariable=msg)
+    l_msg.grid(column=0, row=5, columnspan=2)
+
+    progress_bar.start()
+
+    hr = haze_removal.HazeRemoval()
+    hr.open_image(img_name)
+
+    msg = "Calculating Dark Channel"
+    hr.get_dark_channel()
+    progress()
+
+    msg = "Calculating air light"
+    hr.get_air_light()
+    progress()
+
+    msg = "Calculating transmission"
+    hr.get_transmission()
+    progress()
+
+    msg = "Undergoing guided filter"
+    hr.guided_filter()
+    progress()
+
+    hr.recover()
+    hr.show()
+    msg = "Dehazing complete! Image stored in dehazed folder."
+    progress_bar.stop()
 
     msg = tkinter.Label(root, text="Dehazing complete! Image stored in dehazed folder.")
     msg.grid(column=0, row=5, columnspan=2)
@@ -47,8 +88,27 @@ def restart_program():
 def quit_program():
     sys.exit()
 
+
+def update_progress_label():
+    return f"{progress_bar['value']}%"
+
+
+def progress():
+    if progress_bar['value'] < 100:
+        progress_bar['value'] += 20
+        l_percent['text'] = update_progress_label()
+        progress_bar.update_idletasks()
+        l_percent.update_idletasks()
+
+
+def stop():
+    progress_bar.stop()
+    l_percent['text'] = update_progress_label()
+
+
 root = tkinter.Tk()
 root.title = "Dehaze"
+root.update_idletasks()
 
 label = tkinter.Label(root, text="Enter image path:")
 label.grid(column=0, row=0)
