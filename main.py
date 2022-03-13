@@ -2,8 +2,7 @@ import tkinter
 import os
 import sys
 import subprocess
-import haze_removal
-from tkinter import NW, filedialog, ttk
+from tkinter import filedialog
 from PIL import Image, ImageTk
 
 def open_image():
@@ -48,24 +47,6 @@ def restart_program():
 
 def quit_program():
     sys.exit()
-
-
-def update_progress_label():
-    return f"{progress_bar['value']}%"
-
-
-def progress():
-    if progress_bar['value'] < 100:
-        progress_bar['value'] += 20
-        l_percent['text'] = update_progress_label()
-        progress_bar.update_idletasks()
-        l_percent.update_idletasks()
-
-
-def stop():
-    progress_bar.stop()
-    l_percent['text'] = update_progress_label()
-
 
 root = tkinter.Tk()
 root.title = "Dehaze"
