@@ -19,6 +19,7 @@ This is an simple implemention of "single image haze removal using dark channel 
 - Pillow
 - matplotlib
 - numba
+- tk
 
 ## Run
 
