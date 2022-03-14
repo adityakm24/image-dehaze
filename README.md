@@ -22,7 +22,7 @@ This is an simple implemention of "single image haze removal using dark channel 
 - tk
 
 ## Run
-
+Run main.py file or to run using command line use:
 ```bash
 git clone https://github.com/adityakm24/image-dehaze.git
 cd image-dahaze
