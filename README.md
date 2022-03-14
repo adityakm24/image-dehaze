@@ -15,16 +15,18 @@ This is an simple implemention of "single image haze removal using dark channel 
 
 - numpy
 - opencv-python
-- skimage
+- scikit-image
 - Pillow
 - matplotlib
 - numba
+- tk
 
 ## Run
 
 ```bash
-cd python_code
-python haze_removal.py [your image path]
+git clone https://github.com/adityakm24/image-dehaze.git
+cd image-dahaze
+python main.py
 ```
 
 
@@ -36,8 +38,8 @@ python haze_removal.py [your image path]
 </figure>
 
 <figure class="half">
-    <img src="demo/canyon2.bmp">
-    <img src="demo/canyon2_rev.jpg">
+    <img src="demo/nasa-haze.jpg">
+    <img src="dehazed/nasa-haze_dehazed.jpg">
 </figure>
 
 
