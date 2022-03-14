@@ -32,14 +32,10 @@ python main.py
 
 ## DEMO
 
-<figure class="half">
-    <img src="demo/hongkong.bmp">
-    <img src="demo/hongkong_rev.jpg">
-</figure>
 
 <figure class="half">
     <img src="demo/nasa-haze.jpg">
-    <img src="dehazed/nasa-haze_dehazed.jpg">
+    <img src="demo/nasa-haze_dehazed.jpg">
 </figure>
 
 
