@@ -24,8 +24,9 @@ This is an simple implemention of "single image haze removal using dark channel 
 ## Run
 
 ```bash
-cd python_code
-python haze_removal.py [your image path]
+git clone https://github.com/adityakm24/image-dehaze.git
+cd image-dahaze
+python main.py
 ```
 
 
