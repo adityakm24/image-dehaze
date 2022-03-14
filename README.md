@@ -15,7 +15,7 @@ This is an simple implemention of "single image haze removal using dark channel 
 
 - numpy
 - opencv-python
-- skimage
+- scikit-image
 - Pillow
 - matplotlib
 - numba
