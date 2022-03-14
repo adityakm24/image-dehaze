@@ -38,8 +38,8 @@ python main.py
 </figure>
 
 <figure class="half">
-    <img src="demo/canyon2.bmp">
-    <img src="demo/canyon2_rev.jpg">
+    <img src="demo/nasa-haze.jpg">
+    <img src="dehazed/nasa-haze_dehazed.jpg">
 </figure>
 
 
