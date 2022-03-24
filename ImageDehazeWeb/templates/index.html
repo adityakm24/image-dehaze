@@ -27,13 +27,15 @@
                         <div class="row">                            
                             {% csrf_token %}
                             {{ form.as_p }}
-                            <div class="col"><button class="btn btn-primary btn-lg" type="submit">Upload</button></div>                            
-                            
+                            <div class="col"><button class="btn btn-primary btn-lg" type="submit">Upload</button></div>                         
                         </div>
                     </form>
-
                     {% if img_obj %}
-                        <img src="{{ img_obj.image.url }}" alt="connect" style="max-height: 300px;">
+                        <img src="{{ img_obj.image.url }}" alt="connect" style="max-height: 300px;"><br>
+                        <form method="post">
+                            {% csrf_token %}
+                            <button class="btn btn-primary btn-lg" type="submit" name="run-script">Submit</button>
+                        </form>
                     {% endif %}
                 </div>
             </div>

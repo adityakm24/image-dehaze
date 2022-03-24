@@ -18,10 +18,11 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 
-from openimage.views import homeView
+from openimage.views import homeView,resultView
 
 urlpatterns = [
     path('', homeView),
+    path('result/', resultView),
     path('admin/', admin.site.urls),
 ]
 
