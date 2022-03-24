@@ -1,0 +1,7 @@
+numpy
+opencv-python
+scikit-image
+Pillow
+matplotlib
+numba
+tk
